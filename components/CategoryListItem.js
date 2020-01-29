@@ -5,15 +5,18 @@ import {
   Text,
   View,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import HeartImage from '../assets/heart.png';
 
-const CategoryListItem = ({category}) => {
+const CategoryListItem = ({ category, onPress }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{category.name}</Text>
-      <Image style={styles.categoryImage} source={HeartImage} />
-    </View>
+    <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
+      <View style={styles.container}>
+        <Text style={styles.title}>{category.name}</Text>
+        <Image style={styles.categoryImage} source={HeartImage} />
+      </View>
+    </TouchableOpacity>
   )
 };
 
@@ -21,7 +24,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 0},
+    shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.3,
     shadowRadius: 10,
     padding: 16,
@@ -43,6 +46,7 @@ const styles = StyleSheet.create({
 
 CategoryListItem.propTypes = {
   category: PropTypes.object.isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 export default CategoryListItem;
