@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 import HeartImage from '../assets/heart.png';
 
-const CategoryListItem = ({title, image}) => {
+const CategoryListItem = ({category}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Image style={styles.categoryImage} source={image} />
+      <Text style={styles.title}>{category.name}</Text>
+      <Image style={styles.categoryImage} source={HeartImage} />
     </View>
   )
 };
@@ -42,8 +42,7 @@ const styles = StyleSheet.create({
 });
 
 CategoryListItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  image: Image.propTypes.source.isRequired,
+  category: PropTypes.object.isRequired,
 };
 
 export default CategoryListItem;

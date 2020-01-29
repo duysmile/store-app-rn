@@ -1,14 +1,23 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
 import CategoryListItem from './components/CategoryListItem';
-import HeartImage from './assets/heart.png';
+
+const listCategories = [
+  {id: 1, name: 'Love'},
+  {id: 2, name: 'Memories'},
+  {id: 3, name: 'Album'},
+];
 
 export default function App() {
+  const [categories, setCategories] = useState(listCategories);
   return (
     <View style={styles.container}>
-      <CategoryListItem title="Item Title" image={HeartImage}/>
-      <CategoryListItem title="Item Title" image={HeartImage}/>
-      <CategoryListItem title="Item Title" image={HeartImage}/>
+      <FlatList
+        data={categories}
+        renderItem={({ item }) => <CategoryListItem category={item} />}
+        contentContainerStyle={styles.flatList}
+        keyExtractor={item => `${item.id}`}
+      />
     </View>
   );
 }
@@ -19,6 +28,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'stretch',
     justifyContent: 'center',
+  },
+  flatList: {
     paddingLeft: 16,
     paddingRight: 16,
   },
